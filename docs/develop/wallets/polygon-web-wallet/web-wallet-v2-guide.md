@@ -52,7 +52,7 @@ Click on the Polygon Wallet or Polygon Bridge, and you will see all your token b
 You can either follow the video tutorial or follow the step-by-step guide.
 
 <video loop autoplay width="70%" height="70%" controls="true" >
-  <source type="video/mp4" src="/img/wallet/depositMatic.mp4"></source>
+  <source type="video/mp4" src="/img/wallet/depositv2.mov"></source>
   <p>Your browser does not support the video element.</p>
 </video>
 :::
@@ -112,7 +112,7 @@ You can always check your past transactions clicking on the "Transactions" tab o
 You can either follow the video tutorial or follow the step-by-step guide.
 
 <video loop autoplay width="70%" height="70%" controls="true" >
-  <source type="video/mp4" src="/img/wallet/withdraw-POS.mp4"></source>
+  <source type="video/mp4" src="/img/wallet/withdraw-pos.mov"></source>
   <p>Your browser does not support the video element.</p>
 </video>
 :::
@@ -168,7 +168,7 @@ Then, when you have confirmed the second transaction, you will receive your fund
 You can either follow the video tutorial or follow the step-by-step guide.
 
 <video loop autoplay width="70%" height="70%" controls="true" >
-  <source type="video/mp4" src="/img/wallet/WithdrawMatic.mp4"></source>
+  <source type="video/mp4" src="/img/wallet/Withdraw-plasma-main.mov"></source>
   <p>Your browser does not support the video element.</p>
 </video>
 :::
