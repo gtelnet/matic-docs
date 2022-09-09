@@ -143,6 +143,7 @@ module.exports = {
           },
           items: [
             "develop/wallets/polygon-web-wallet/web-wallet-v2-guide",
+            "develop/wallets/polygon-web-wallet/web-wallet-v3-guide",
             "develop/wallets/polygon-web-wallet/deposit-eth-dai-on-polygon",
           ],
         },
