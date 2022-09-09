@@ -70,6 +70,18 @@ module.exports = {
         "develop/network-details/full-node-docker",
         "develop/network-details/snapshot-instructions-heimdall-bor",
         "develop/network-details/network-rpc-endpoints",
+        {
+          type: "category",
+          label: "Erigon's Archive Node",
+          link: {
+            type: "generated-index",
+          },
+          items: [
+            "develop/network-details/erigon/client-setup",
+            "develop/network-details/erigon/archive-node-ansible",
+            "develop/network-details/erigon/archive-node-binaries"
+          ]
+        },
       ],
     },
     {
@@ -1011,7 +1023,8 @@ module.exports = {
               "edge/consensus/poa",
               "edge/consensus/pos-concepts",
               "edge/consensus/pos-stake-unstake",
-              "edge/consensus/migration-to-pos"
+              "edge/consensus/migration-to-pos",
+              "edge/consensus/bls"
           ]
       },
       {
@@ -1039,6 +1052,7 @@ module.exports = {
               },
               "edge/additional-features/stress-testing",
               "edge/additional-features/blockscout",
+              "edge/additional-features/permission-contract-deployment",
           ]
       },
       {
@@ -1119,6 +1133,7 @@ module.exports = {
             "edge/faq/contracts",
             "edge/faq/tokens",
         ]
-    }
+    },
+    "edge/troubleshooting"
   ]
 };

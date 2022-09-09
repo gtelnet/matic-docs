@@ -723,6 +723,25 @@ Sets the ID of the chain. Default: `100`.
 
 ---
 
+<h4><i>ibft-validator-type</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    genesis [--ibft-validator-type IBFT_VALIDATOR_TYPE]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    genesis --ibft-validator-type ecdsa
+
+  </TabItem>
+</Tabs>
+
+Specifies the validation mode of block headers. Possible values: `[ecdsa, bls]`. Default: `bls`.
+
+---
+
 <h4><i>ibft-validators-prefix-path</i></h4>
 
 <Tabs>
@@ -757,7 +776,9 @@ Prefix path for validator folder directory. Needs to be present if the flag `ibf
   </TabItem>
 </Tabs>
 
-Sets passed in addresses as IBFT validators. Needs to be present if the flag `ibft-validators-prefix-path` is omitted.
+Sets passed addresses as IBFT validators. Needs to be present if the flag `ibft-validators-prefix-path` is omitted.
+1. If the network is running with ECDSA, the format is `--ibft-validator [ADDRESS]`. 
+2. If the network is running with BLS, the format is  `--ibft-validator [ADDRESS]:[BLS_PUBLIC_KEY]`.
 
 ---
 
@@ -1074,6 +1095,25 @@ Address of the account to be voted for.
 
 ---
 
+<h4><i>bls</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    ibft propose --bls BLS_PUBLIC_KEY
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    ibft propose --bls 0x9952735ca14734955e114a62e4c26a90bce42b4627a393418372968fa36e73a0ef8db68bba11ea967ff883e429b3bfdf
+
+  </TabItem>
+</Tabs>
+
+BLS Public Key of the account to be voted for, necessary only in BLS mode.
+
+---
+
 <h4><i>grpc-address</i></h4>
 
 <Tabs>
@@ -1183,6 +1223,65 @@ Specifies the height of contract deployment. Only available with PoS.
 
   </TabItem>
 </Tabs>
+
+---
+
+<h4><i>ibft-validator-type</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+     ibft switch [--ibft-validator-type IBFT_VALIDATOR_TYPE]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+     ibft switch --ibft-validator-type ecdsa
+
+  </TabItem>
+</Tabs>
+
+Specifies the validation mode of block headers. Possible values: `[ecdsa, bls]`. Default: `bls`.
+
+---
+
+<h4><i>ibft-validators-prefix-path</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+     ibft switch [--ibft-validators-prefix-path IBFT_VALIDATORS_PREFIX_PATH]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+     ibft switch --ibft-validators-prefix-path test-chain-
+
+  </TabItem>
+</Tabs>
+
+Prefix path for the directories of new validators. Needs to be present if the flag `ibft-validator` is omitted. Available only when the IBFT mode is PoA (`--pos` flag is omitted).
+
+---
+
+<h4><i>ibft-validator</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+     ibft switch [--ibft-validator IBFT_VALIDATOR_LIST]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+     ibft switch --ibft-validator 0xC12bB5d97A35c6919aC77C709d55F6aa60436900
+
+  </TabItem>
+</Tabs>
+
+Sets passed in addresses as IBFT validators used after the fork. Needs to be present if the flag `ibft-validators-prefix-path` is omitted. Available only in PoA mode.
+1. If the network is running with ECDSA, the format is `--ibft-validator [ADDRESS]`. 
+2. If the network is running with BLS, the format is  `--ibft-validator [ADDRESS][BLS_PUBLIC_KEY]`.
 
 ---
 
@@ -1502,6 +1601,63 @@ Sets the path to the SecretsManager config file. Used for Hashicorp Vault. If om
 
 Sets the directory for the Polygon Edge data if the local FS is used.
 
+---
+
+<h4><i>ecdsa</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    secrets init [--ecdsa FLAG]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    secrets init --ecdsa=false
+
+  </TabItem>
+</Tabs>
+
+Sets the flag indicating whether to generate an ECDSA key. Default: `true`.
+
+---
+
+<h4><i>network</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    secrets init [--network FLAG]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    secrets init --network=false
+
+  </TabItem>
+</Tabs>
+
+Sets the flag indicating whether to generate a Libp2p Network key. Default: `true`.
+
+---
+
+<h4><i>bls</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    secrets init [--bls FLAG]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    secrets init --bls
+
+  </TabItem>
+</Tabs>
+
+Sets the flag indicating whether to generate a BLS key. Default: `true`.
+
 ### secrets generate flags
 
 <h4><i>dir</i></h4>
@@ -1655,6 +1811,103 @@ message BlockchainEvent {
 ````
 
 ## Utilities
+
+### whitelist commands
+
+| **Command**            | **Description**                                                                     |
+|------------------------|-------------------------------------------------------------------------------------|
+| whitelist show         | Displays whitelist information                     |
+| whitelist deployment   | Updates the smart contract deployment whitelist |
+
+<h3> whitelist show </h3>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    whitelist show
+
+  </TabItem>
+</Tabs>
+
+Displays whitelist information.
+
+---
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    whitelist show [--chain GENESIS_FILE]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    whitelist show --chain genesis.json
+
+  </TabItem>
+</Tabs>
+
+Specifies the genesis file to update. Default: `./genesis.json`.
+
+---
+
+<h3> whitelist deployment </h3>
+
+<h4><i>chain</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    whitelist deployment [--chain GENESIS_FILE]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    whitelist deployment --chain genesis.json
+
+  </TabItem>
+</Tabs>
+
+Specifies the genesis file to update. Default: `./genesis.json`.
+
+---
+
+<h4><i>add</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    whitelist deployment [--add ADDRESS]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    whitelist deployment --add 0x5383Cb489FaCa92365Bb6f9f1FB40bD032E6365d
+
+  </TabItem>
+</Tabs>
+
+Adds a new address to the contract deployment whitelist. Only the addresses in the contract deployment whitelist can deploy contracts. If empty, any address can execute the contract deployment
+
+---
+
+<h4><i>remove</i></h4>
+
+<Tabs>
+  <TabItem value="syntax" label="Syntax" default>
+
+    whitelist deployment [--remove ADDRESS]
+
+  </TabItem>
+  <TabItem value="example" label="Example">
+
+    whitelist deployment --remove 0x5383Cb489FaCa92365Bb6f9f1FB40bD032E6365d
+
+  </TabItem>
+</Tabs>
+
+Removes an address from the contract deployment whitelist. Only the addresses in the contract deployment whitelist can deploy contracts. If empty, any address can execute the contract deployment
+
+---
 
 ### loadbot flags
 
