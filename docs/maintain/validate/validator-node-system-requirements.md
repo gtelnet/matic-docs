@@ -14,7 +14,7 @@ image: https://matic.network/banners/matic-network-16x9.png
 
 ## Overview
 
-The system requirements listed in this section are both for the [sentry](https://wiki.polygon.technology/docs/maintain/glossary#sentry) node and the [validator](https://wiki.polygon.technology/docs/maintain/glossary#validator) node.
+The system requirements listed in this section are both for the [sentry](../../glossary#sentry) node and the [validator](../../glossary#validator) node.
 
 The *minimum* system requirements mean you can run the nodes but the setup is not future-proof.
 
